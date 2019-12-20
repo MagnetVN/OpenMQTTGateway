@@ -48,10 +48,10 @@
  */
 /*-------------DEFINE GATEWAY NAME BELOW IT CAN ALSO BE DEFINED IN platformio.ini----------------*/
 #ifndef Gateway_Name
-  #define Gateway_Name "OpenMQTTGateway"
+  #define Gateway_Name "HomeMate MQTT Gateway"
 #endif
 
-#define Base_Topic "home/"
+#define Base_Topic "homemate/"
 
 /*-------------DEFINE YOUR  NETWORK PARAMETERS BELOW----------------*/
 //#define NetworkAdvancedSetup true //uncomment if you want to set advanced network parameters for arduino boards, not uncommented you can set the IP and mac only
@@ -75,7 +75,7 @@
   #define wifi_password "wifi password"
 #endif
 
-#define WifiManager_password "your_password" //this is going to be the WPA2-PSK password for the initial setup access point 
+#define WifiManager_password "homemate" //this is going to be the WPA2-PSK password for the initial setup access point 
 #define WifiManager_ssid Gateway_Name //this is the network name of the initial setup access point
 #define WifiManager_ConfigPortalTimeOut 120
 #define WifiManager_TimeOut 5
@@ -92,9 +92,9 @@
 //#define mqtt_server_name "www.mqtt_broker.com" // instead of defining the server by its IP you can define it by its name, uncomment this line and set the correct MQTT server host name
 #define parameters_size 20
 #define mqtt_topic_max_size 100
-char mqtt_user[parameters_size] = "your_username"; // not compulsory only if your broker needs authentication
-char mqtt_pass[parameters_size] = "your_password"; // not compulsory only if your broker needs authentication
-char mqtt_server[parameters_size] = "192.168.1.17";
+char mqtt_user[parameters_size] = "mqtt"; // not compulsory only if your broker needs authentication
+char mqtt_pass[parameters_size] = "mqtt"; // not compulsory only if your broker needs authentication
+char mqtt_server[parameters_size] = "192.168.1.10";
 char mqtt_port[6] = "1883";
 char mqtt_topic[mqtt_topic_max_size] = Base_Topic;
 char gateway_name[parameters_size * 2] = Gateway_Name;
@@ -123,7 +123,7 @@ char gateway_name[parameters_size * 2] = Gateway_Name;
 //#define ZsensorBME280  "BME280"   //ESP8266, Arduino, ESP32
 //#define ZsensorDHT     "DHT"      //ESP8266, Arduino, ESP32,  Sonoff RF Bridge
 //#define ZsensorGPIOKeyCode "GPIOKeyCode" //ESP8266, Arduino, ESP32
-//#define ZsensorGPIOInput "GPIOInput" //ESP8266, Arduino, ESP32
+#define ZsensorGPIOInput "GPIOInput" //ESP8266, Arduino, ESP32
 //#define ZmqttDiscovery "HADiscovery"//ESP8266, Arduino, ESP32, Sonoff RF Bridge
 //#define ZactuatorFASTLED "FASTLED"  //ESP8266, Arduino, ESP32, Sonoff RF Bridge
 
