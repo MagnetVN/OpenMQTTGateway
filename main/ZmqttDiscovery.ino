@@ -108,7 +108,13 @@ void createDiscovery(char *sensor_type,
     device.set("name", Gateway_Name);
     device.set("manufacturer", DEVICEMANUFACTURER);
     device.set("sw_version", OMG_VERSION);
-    device.set("model", "BLE");
+    #ifdef ZsensorGPIOInput
+      device.set("model", "GPIO Input");
+    #endif
+    #ifdef ZgatewayBT
+      device.set("model", "BLE");
+    #endif
+
     JsonArray &identifiers = device.createNestedArray("identifiers");
     identifiers.add(getMacAddress());
     sensor.set("device", device); //device sensor is connected to
