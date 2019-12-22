@@ -30,8 +30,8 @@ extern void setupBT();
 extern bool BTtoMQTT();  
 extern void MQTTtoBT(char * topicOri, JsonObject& RFdata);
 /*----------------------BT topics & parameters-------------------------*/
-#define subjectBTtoMQTT  "/BTtoMQTT/"
-#define subjectMQTTtoBTset  "/commands/MQTTtoBT/set"
+#define subjectBTtoMQTT  "/BTtoMQTT"
+#define subjectMQTTtoBTset  "/commands/MQTTtoBT/config"
 #define TimeBtw_Read 55555 //define default time between 2 scans
 #define MinimumRSSI -100 //default minimum rssi value, all the devices below -90 will not be reported
 #define Scan_duration 10 //define the time for a scan --WARNING-- changing this value can lead to instability on ESP32
@@ -43,7 +43,7 @@ extern void MQTTtoBT(char * topicOri, JsonObject& RFdata);
 
 /*-------------------HOME ASSISTANT ROOM PRESENCE ----------------------*/
 // if not commented Home presence integration with HOME ASSISTANT is activated
-//#define subjectHomePresence "home_presence/" // will send Home Assistant room presence message to this topic (first part is same for all rooms, second is room name)
+#define subjectHomePresence "home_presence/" // will send Home Assistant room presence message to this topic (first part is same for all rooms, second is room name)
 
 unsigned int BLEinterval ; //time between 2 scans
 int Minrssi ; //minimum rssi value

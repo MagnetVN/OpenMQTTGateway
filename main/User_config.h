@@ -28,7 +28,7 @@
 #ifndef user_config_h
 #define user_config_h
 /*-------------------VERSION----------------------*/
-#define OMG_VERSION "version_tag"
+#define OMG_VERSION "0.9.2"
 
 /*-------------CONFIGURE WIFIMANAGER-------------(only ESP8266 & SONOFF RFBridge)*/
 /*
@@ -51,7 +51,7 @@
   #define Gateway_Name "HomeMate MQTT Gateway"
 #endif
 
-#define Base_Topic "homemate/"
+#define Base_Topic "main_gate/"
 
 /*-------------DEFINE YOUR  NETWORK PARAMETERS BELOW----------------*/
 //#define NetworkAdvancedSetup true //uncomment if you want to set advanced network parameters for arduino boards, not uncommented you can set the IP and mac only
@@ -89,13 +89,13 @@
 
 /*-------------DEFINE YOUR MQTT PARAMETERS BELOW----------------*/
 //MQTT Parameters definition
-//#define mqtt_server_name "www.mqtt_broker.com" // instead of defining the server by its IP you can define it by its name, uncomment this line and set the correct MQTT server host name
+#define mqtt_server_name "tailor.cloudmqtt.com" // instead of defining the server by its IP you can define it by its name, uncomment this line and set the correct MQTT server host name
 #define parameters_size 20
 #define mqtt_topic_max_size 100
-char mqtt_user[parameters_size] = "mqtt"; // not compulsory only if your broker needs authentication
-char mqtt_pass[parameters_size] = "mqtt"; // not compulsory only if your broker needs authentication
+char mqtt_user[parameters_size] = "aklmurqr"; // not compulsory only if your broker needs authentication
+char mqtt_pass[parameters_size] = "yx0r4J_oB7jn"; // not compulsory only if your broker needs authentication
 char mqtt_server[parameters_size] = "192.168.1.10";
-char mqtt_port[6] = "1883";
+char mqtt_port[6] = "13132";
 char mqtt_topic[mqtt_topic_max_size] = Base_Topic;
 char gateway_name[parameters_size * 2] = Gateway_Name;
 //uncomment the line below to integrate msg value into the subject when receiving
@@ -124,7 +124,7 @@ char gateway_name[parameters_size * 2] = Gateway_Name;
 //#define ZsensorDHT     "DHT"      //ESP8266, Arduino, ESP32,  Sonoff RF Bridge
 //#define ZsensorGPIOKeyCode "GPIOKeyCode" //ESP8266, Arduino, ESP32
 #define ZsensorGPIOInput "GPIOInput" //ESP8266, Arduino, ESP32
-//#define ZmqttDiscovery "HADiscovery"//ESP8266, Arduino, ESP32, Sonoff RF Bridge
+#define ZmqttDiscovery "HADiscovery"//ESP8266, Arduino, ESP32, Sonoff RF Bridge
 //#define ZactuatorFASTLED "FASTLED"  //ESP8266, Arduino, ESP32, Sonoff RF Bridge
 
 /*-------------DEFINE YOUR MQTT ADVANCED PARAMETERS BELOW----------------*/
@@ -229,7 +229,7 @@ char gateway_name[parameters_size * 2] = Gateway_Name;
 
 #define TimeBetweenReadingSYS 120000 // time between system readings (like memory)
 #define subjectSYStoMQTT  "/SYStoMQTT"
-#define subjectMQTTtoSYSset "/commands/MQTTtoSYS/set"
+#define subjectMQTTtoSYSset "/commands/MQTTtoSYS/config"
 
 //#define subjectTRACEtoMQTT "OpenMQTTGateway/log" //uncomment if you want to see traces on OpenMQTTGateway/log topic
 

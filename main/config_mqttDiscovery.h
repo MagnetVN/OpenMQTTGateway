@@ -38,6 +38,6 @@ extern void createDiscovery(char * sensor_type,
 
 #define discovery_Topic "homeassistant"
 
-#define DEVICEMANUFACTURER "OMG_community"
+#define DEVICEMANUFACTURER "HomeMateVN"
 
 #endif
