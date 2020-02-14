@@ -54,19 +54,21 @@
 #define Base_Topic "main_gate/"
 
 /*-------------DEFINE YOUR  NETWORK PARAMETERS BELOW----------------*/
+
 //#define NetworkAdvancedSetup true //uncomment if you want to set advanced network parameters for arduino boards, not uncommented you can set the IP and mac only
 #ifdef NetworkAdvancedSetup // for arduino boards advanced config
-  // these values are only used if no dhcp configuration is available
-  const byte ip[] = { 192, 168, 1, 99 }; //ip adress
-  const byte gateway[] = { 0, 0, 0, 0 }; //ip adress, if first value is different from 0 advanced config network will be used and you should fill gateway & dns
-  const byte Dns[] = { 0, 0, 0, 0 }; //ip adress, if first value is different from 0 advanced config network will be used and you should fill gateway & dns
-  const byte subnet[] = { 255, 255, 255, 0 }; //ip adress
+  #if defined(ESP8266)||defined(ESP32)
+    const byte ip[] = { 192, 168, 1, 99 }; //ip adress of the gateway, already defined for arduino below
+  #endif
+  const byte gateway[] = { 0, 0, 0, 0 }; 
+  const byte Dns[] = { 0, 0, 0, 0 }; 
+  const byte subnet[] = { 255, 255, 255, 0 }; 
 #endif
 
 #if defined(ESP8266)||defined(ESP32)  // for nodemcu, weemos and esp8266
   //#define ESPWifiManualSetup true //uncomment you don't want to use wifimanager for your credential settings on ESP
 #else // for arduino boards
-  const byte ip[] = { 192, 168, 1, 99 }; //ip adress
+  const byte ip[] = { 192, 168, 1, 99 }; 
   const byte mac[] = {  0xDE, 0xED, 0xBA, 0xFE, 0x54, 0x95 }; //W5100 ethernet shield mac adress
 #endif
 
@@ -89,6 +91,7 @@
 
 /*-------------DEFINE YOUR MQTT PARAMETERS BELOW----------------*/
 //MQTT Parameters definition
+<<<<<<< HEAD
 #define mqtt_server_name "tailor.cloudmqtt.com" // instead of defining the server by its IP you can define it by its name, uncomment this line and set the correct MQTT server host name
 #define parameters_size 20
 #define mqtt_topic_max_size 100
@@ -96,18 +99,33 @@ char mqtt_user[parameters_size] = "aklmurqr"; // not compulsory only if your bro
 char mqtt_pass[parameters_size] = "yx0r4J_oB7jn"; // not compulsory only if your broker needs authentication
 char mqtt_server[parameters_size] = "192.168.1.10";
 char mqtt_port[6] = "13132";
+=======
+//#define mqtt_server_name "www.mqtt_broker.com" // instead of defining the server by its IP you can define it by its name, uncomment this line and set the correct MQTT server host name
+#if defined(ESP8266) || defined(ESP32) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1280__)
+  #define parameters_size 20
+  #define mqtt_topic_max_size 100
+#else
+  #define parameters_size 15
+  #define mqtt_topic_max_size 50
+#endif
+char mqtt_user[parameters_size] = "your_username"; // not compulsory only if your broker needs authentication
+char mqtt_pass[parameters_size] = "your_password"; // not compulsory only if your broker needs authentication
+char mqtt_server[parameters_size] = "192.168.1.17";
+char mqtt_port[6] = "1883";
+>>>>>>> upstream/development
 char mqtt_topic[mqtt_topic_max_size] = Base_Topic;
 char gateway_name[parameters_size * 2] = Gateway_Name;
 //uncomment the line below to integrate msg value into the subject when receiving
 //#define valueAsASubject true
 
 /*-------------DEFINE THE MODULES YOU WANT BELOW----------------*/
-//Addons and module management, comment the Z line
+//Addons and module management, uncomment the Z line corresponding to the module you want to use
 
 //#define ZgatewayRF     "RF"       //ESP8266, Arduino, ESP32
 //#define ZgatewayIR     "IR"       //ESP8266, Arduino,         Sonoff RF Bridge
 //#define ZgatewayLORA   "LORA"       //ESP8266, Arduino, ESP32
 //#define ZgatewayPilight "Pilight" //ESP8266, Arduino, ESP32
+//#define ZgatewayWeatherStation "WeatherStation" //ESP8266, Arduino, ESP32
 //#define ZgatewayBT     "BT"       //ESP8266, ESP32
 //#define ZgatewayRF2    "RF2"      //ESP8266, Arduino, ESP32
 //#define ZgatewaySRFB   "SRFB"     //                          Sonoff RF Bridge
@@ -122,6 +140,7 @@ char gateway_name[parameters_size * 2] = Gateway_Name;
 //#define ZsensorTSL2561 "TSL2561"  //ESP8266, Arduino, ESP32
 //#define ZsensorBME280  "BME280"   //ESP8266, Arduino, ESP32
 //#define ZsensorDHT     "DHT"      //ESP8266, Arduino, ESP32,  Sonoff RF Bridge
+//#define ZsensorDS1820  "DS1820"   //ESP8266, Arduino, ESP32
 //#define ZsensorGPIOKeyCode "GPIOKeyCode" //ESP8266, Arduino, ESP32
 #define ZsensorGPIOInput "GPIOInput" //ESP8266, Arduino, ESP32
 #define ZmqttDiscovery "HADiscovery"//ESP8266, Arduino, ESP32, Sonoff RF Bridge
@@ -143,7 +162,7 @@ char gateway_name[parameters_size * 2] = Gateway_Name;
 //example 
 // home/OpenMQTTGateway_ESP32_DEVKIT/BTtoMQTT/4XXXXXXXXXX4/rssi -63.0
 // home/OpenMQTTGateway_ESP32_DEVKIT/BTtoMQTT/4XXXXXXXXXX4/servicedata fe0000000000000000000000000000000000000000
-#define simpleReceiving true //comment if you don't want to use old way reception analysis
+//#define simpleReceiving true //comment if you don't want to use old way reception analysis
 
 /*-------------DEFINE YOUR OTA PARAMETERS BELOW----------------*/
 #define ota_hostname Gateway_Name
@@ -230,10 +249,13 @@ char gateway_name[parameters_size * 2] = Gateway_Name;
 #define TimeBetweenReadingSYS 120000 // time between system readings (like memory)
 #define subjectSYStoMQTT  "/SYStoMQTT"
 #define subjectMQTTtoSYSset "/commands/MQTTtoSYS/config"
+<<<<<<< HEAD
 
 //#define subjectTRACEtoMQTT "OpenMQTTGateway/log" //uncomment if you want to see traces on OpenMQTTGateway/log topic
+=======
+>>>>>>> upstream/development
 
-/*-------------------ACTIVATE TRACES----------------------*/
-#define TRACE 1  // commented =  trace off, uncommented = trace on
+/*-------------------DEFINE LOG LEVEL----------------------*/
+#define LOG_LEVEL LOG_LEVEL_VERBOSE
 
 #endif
